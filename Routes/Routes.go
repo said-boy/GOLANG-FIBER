@@ -9,5 +9,8 @@ func SetupRoutes(app *fiber.App){
 
 	app.Get("/", controllers.HomeIndex)
 	app.Get("/about", controllers.HomeAbout)
+	app.Get("/hello/:name", controllers.HomeSayHello)
+
+	app.Static("/static", "./Public/static")
 
 }
