@@ -32,9 +32,9 @@ func SetupRoutes(app *fiber.App) {
 
 	// PR . menambahkan middleware ke group dan route
 	app.Route("/route", func(router fiber.Router) {
-		router.Get("/satu", controllers.RouteSatuIndex).Name("satu")
-		router.Get("/dua", controllers.RouteDuaIndex).Name("dua")
-	}).Name("route")
+		router.Get("/satu", controllers.RouteSatuIndex).Name("satu") // "route.satu"
+		router.Get("/dua", controllers.RouteDuaIndex).Name("dua") // "route.dua"
+	}, "route.")
 
 
 

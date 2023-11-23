@@ -1,8 +1,10 @@
 package main
 
 import (
-	"log"
+	"golang-fiber/Config"
 	"golang-fiber/Routes"
+	"log"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -11,6 +13,8 @@ func main() {
 		AppName:           "Aplikasi Web Golang",
 		EnablePrintRoutes: true,
 	})
+
+	config.LoadConfig(app)
 
 	routes.SetupRoutes(app)
 	
