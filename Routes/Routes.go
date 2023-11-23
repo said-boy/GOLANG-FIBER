@@ -19,4 +19,23 @@ func SetupRoutes(app *fiber.App) {
 	// route static digunakan untuk agar client bisa mengakses static kita
 	app.Static("/static", "./Public/static")
 
+	// routing Group
+	// untuk mengelompokkan pada 1 parent route
+
+	v1 := app.Group("/v1") // v1/
+	v1.Get("/", controllers.V1GroupIndex) // v1/
+	v1.Get("/about", controllers.V1GroupAbout) // v1/about
+	
+	v2 := app.Group("/v2") // v2/
+	v2.Get("/", controllers.V2GroupIndex) // v2/
+	v2.Get("/about", controllers.V2GroupAbout) // v2/about
+
+	// PR . menambahkan middleware ke group dan route
+	app.Route("/route", func(router fiber.Router) {
+		router.Get("/satu", controllers.RouteSatuIndex).Name("satu")
+		router.Get("/dua", controllers.RouteDuaIndex).Name("dua")
+	}).Name("route")
+
+
+
 }
