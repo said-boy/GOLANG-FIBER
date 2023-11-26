@@ -36,6 +36,7 @@ func SetupRoutes(app *fiber.App) {
 		router.Get("/dua", controllers.RouteDuaIndex).Name("dua") // "route.dua"
 	}, "route.")
 
-
+	ctx := app.Group("/ctx")
+	ctx.Get("/accept", controllers.CtxAccept).Name("accept") 
 
 }
