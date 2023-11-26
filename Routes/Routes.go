@@ -43,4 +43,6 @@ func SetupRoutes(app *fiber.App) {
 	// atau bisa mengguanakan /:parameter
 	ctx.Get("/all-params/*/ke-dua/*", controllers.CtxAllParams)
 
+	ctx.Get("/stack", controllers.CtxStack).Name("stack")
+
 }

@@ -44,3 +44,8 @@ func CtxAllParams(c *fiber.Ctx) error {
 	}
 	return c.Next()
 }
+
+// stack mengembalikan [route, name, method, params] yang ada pada aplikasi
+func CtxStack(c *fiber.Ctx) error {
+	return c.JSON(c.App().Stack())
+}
