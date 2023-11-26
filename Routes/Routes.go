@@ -38,5 +38,9 @@ func SetupRoutes(app *fiber.App) {
 
 	ctx := app.Group("/ctx")
 	ctx.Get("/accept", controllers.CtxAccept).Name("accept") 
+	
+	// /all-params/halo/halolagi/ke-dua/hai => *1 = halo/halolagi, *2 = hai 
+	// atau bisa mengguanakan /:parameter
+	ctx.Get("/all-params/*/ke-dua/*", controllers.CtxAllParams)
 
 }
