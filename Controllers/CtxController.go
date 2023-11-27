@@ -56,3 +56,17 @@ func CtxAppend(c *fiber.Ctx) error {
 	c.Append("Link-Dua", "https://facebook.com", "https://tiktok.com")
 	return c.Next()
 }
+
+// kontent yang dikirimkan ke response tidak akan di render dibrowser
+// melainkan akan otomatis terdownload oleh client
+func CtxAttachment(c *fiber.Ctx) error {
+	// "sayHello.png" adl nama file yang akan diberikan ke client saat file terdownload 
+	// ekstensi file harus sama dengan exktensi yang akan dikirimkan oleh server,
+	// jika tidak maka gambar tidak akan bisa dibuka. 
+	// harus direname secara manual oleh client untuk dapat dibuka
+	c.Attachment("sayHello.png") 
+
+	// response yang akan dikirimkan ke client berupa file gambar dari path berikut
+	// file dapat berupa text, gambar, file dan dokumen lainnya.
+	return c.SendFile("./Public/static/image/civic.png") 
+}

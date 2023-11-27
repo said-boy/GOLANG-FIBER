@@ -44,7 +44,7 @@ func SetupRoutes(app *fiber.App) {
 	ctx.Get("/all-params/*/ke-dua/*", controllers.CtxAllParams)
 
 	ctx.Get("/stack", controllers.CtxStack).Name("stack")
-
 	ctx.Get("/append", controllers.CtxAppend)
+	ctx.Get("/attachment", controllers.CtxAttachment)
 
 }
