@@ -45,4 +45,6 @@ func SetupRoutes(app *fiber.App) {
 
 	ctx.Get("/stack", controllers.CtxStack).Name("stack")
 
+	ctx.Get("/append", controllers.CtxAppend)
+
 }

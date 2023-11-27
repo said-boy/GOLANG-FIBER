@@ -49,3 +49,10 @@ func CtxAllParams(c *fiber.Ctx) error {
 func CtxStack(c *fiber.Ctx) error {
 	return c.JSON(c.App().Stack())
 }
+
+// menambahkan ke header response berupa {key} dan {value}
+func CtxAppend(c *fiber.Ctx) error {
+	c.Append("Link", "https://google.com")
+	c.Append("Link-Dua", "https://facebook.com", "https://tiktok.com")
+	return c.Next()
+}
