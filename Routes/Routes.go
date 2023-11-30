@@ -47,4 +47,10 @@ func SetupRoutes(app *fiber.App) {
 	ctx.Get("/append", controllers.CtxAppend)
 	ctx.Get("/attachment", controllers.CtxAttachment)
 
+	// TEMPLATE ROUTES
+	template := app.Group("/templates")
+	template.Get("/", controllers.TemplatesIndex)
+	template.Get("/sapa-:name?", controllers.TemplatesIndex)
+
+
 }

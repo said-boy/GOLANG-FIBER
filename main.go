@@ -8,12 +8,18 @@ import (
 	// "net"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/template/html/v2" // go get dulu, baru bisa pakai
+	"github.com/qinains/fastergoding"
 )
 
 func main() {
+	fastergoding.Run()
+	engine := html.New("./Views", ".gohtml")
+
 	app := fiber.New(fiber.Config{
 		AppName:           "Aplikasi Web Golang",
 		EnablePrintRoutes: true,
+		Views: engine,
 	})
 
 	config.LoadConfig(app)
