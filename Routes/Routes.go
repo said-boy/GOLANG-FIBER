@@ -2,6 +2,8 @@ package routes
 
 import (
 	"golang-fiber/Controllers"
+	middleware "golang-fiber/Middleware"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -52,5 +54,40 @@ func SetupRoutes(app *fiber.App) {
 	template.Get("/", controllers.TemplatesIndex)
 	template.Get("/sapa-:name?", controllers.TemplatesIndex)
 
+
+	// jika ada route ke tempat yang sama, maka route yang akan digunakan/terpanggil
+	// adalah route yang pertama kali ditulis.
+
+	// http://localhost:3000/templates/@said
+	// :sign => @ , :name => said
+	// http://localhost:3000/templates/said
+	// :sign => s , :name => aid
+	// sign mengambil 1 karakter data parameter paling awal
+	template.Get("/:sign:name", controllers.TemplatesSignRoutes) // ini yang akan dipanggil
+	template.Get("/:username<int>", controllers.TemplatesConstrainsRoute) // ini tidak terpanggil
+	
+	// memberi aturan pada parameter yang dikirimkan pada url.
+	// http://localhost:3000/templates/username/123
+	template.Get("/username/:username<int>", controllers.TemplatesConstrainsRoute) 
+
+	// http://localhost:3000/templates/username2/aaaaaaaZAaa // benar
+	// http://localhost:3000/templates/username2/aaaaaaa123 // salah
+	// alpha hanya memperbolehkan huruf a-z besar ataupun kecil
+	template.Get("/username2/:username<alpha;minLen(8)>", controllers.TemplatesConstrainsRoute) 
+
+
+	// PENERAPAN MIDDLEWARE
+	
+	// karena middleware diletakkana di use
+	// maka siapapun yang ingin mengakses /middleware harus memenuhi syaratnya.
+	app.Use("/middleware", middleware.MiddlewareCustomCookie)
+
+	midv1 := app.Group("/middleware")
+	midv1.Get("/v1", controllers.V1GroupIndex)
+	midv1.Get("/v1/about", controllers.V1GroupAbout)
+
+	midv2 := app.Group("/middleware")
+	midv2.Get("/v2", controllers.V2GroupIndex)
+	midv2.Get("/v2/about", controllers.V2GroupAbout)
 
 }
