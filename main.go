@@ -3,14 +3,16 @@ package main
 import (
 	// "crypto/tls"
 	config "golang-fiber/Config"
+	"golang-fiber/CustomErrorHandler"
 	routes "golang-fiber/Routes"
 	"log"
+
 	// "net"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/template/html/v2" // go get dulu, baru bisa pakai
 	"github.com/qinains/fastergoding"
-	"github.com/gofiber/fiber/v2/middleware/recover"
 )
 
 func main() {
@@ -22,6 +24,7 @@ func main() {
 		EnablePrintRoutes: true,
 		Views: engine,
 		ViewsLayout: "Views/main",
+		ErrorHandler: customerrorhandler.ErrorHandler, // mengganti default dengan custom
 	})
 
 	// menambahkan recover ke semua route, jadi semua panic akan dapat ditangani
