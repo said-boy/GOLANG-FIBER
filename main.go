@@ -3,7 +3,7 @@ package main
 import (
 	// "crypto/tls"
 	config "golang-fiber/Config"
-	"golang-fiber/CustomErrorHandler"
+	"golang-fiber/ErrorHandler"
 	routes "golang-fiber/Routes"
 	"log"
 
@@ -24,7 +24,7 @@ func main() {
 		EnablePrintRoutes: true,
 		Views: engine,
 		ViewsLayout: "Views/main",
-		ErrorHandler: customerrorhandler.ErrorHandler, // mengganti default dengan custom
+		ErrorHandler: errorhandler.ErrorHandler, // mengganti default dengan custom
 	})
 
 	// menambahkan recover ke semua route, jadi semua panic akan dapat ditangani

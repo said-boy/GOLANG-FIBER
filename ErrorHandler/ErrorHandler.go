@@ -1,4 +1,4 @@
-package customerrorhandler
+package errorhandler
 
 import (
 	"errors"
