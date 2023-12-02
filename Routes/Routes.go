@@ -90,4 +90,15 @@ func SetupRoutes(app *fiber.App) {
 	midv2.Get("/v2", controllers.V2GroupIndex)
 	midv2.Get("/v2/about", controllers.V2GroupAbout)
 
+	// error handler
+	app.Get("/error", controllers.ErrorHandler)
+	
+	// simulasi panic
+	// by default, fiber tidak bisa menghandle panic. contoh..
+	app.Get("/panic", controllers.ErrorPanicSimulation)
+	// ketika diakses, maka server akan berhenti
+	
+	// cara menangani panic dengan menggunakan recover
+	// dan meletakkanya di main.go	
+
 }

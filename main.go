@@ -10,6 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html/v2" // go get dulu, baru bisa pakai
 	"github.com/qinains/fastergoding"
+	"github.com/gofiber/fiber/v2/middleware/recover"
 )
 
 func main() {
@@ -20,7 +21,12 @@ func main() {
 		AppName:           "Aplikasi Web Golang",
 		EnablePrintRoutes: true,
 		Views: engine,
+		ViewsLayout: "Views/main",
 	})
+
+	// menambahkan recover ke semua route, jadi semua panic akan dapat ditangani
+	// dan tidak langsung menyebabkan server mati.
+	app.Use(recover.New())
 
 	config.LoadConfig(app)
 
