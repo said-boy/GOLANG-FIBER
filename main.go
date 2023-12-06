@@ -23,7 +23,7 @@ func main() {
 		AppName:           "Aplikasi Web Golang",
 		EnablePrintRoutes: true,
 		Views: engine,
-		ViewsLayout: "Views/main",
+		// ViewsLayout: "./Views/main.gohtml",
 		ErrorHandler: errorhandler.ErrorHandler, // mengganti default dengan custom
 	})
 
