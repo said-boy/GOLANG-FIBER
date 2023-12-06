@@ -103,5 +103,7 @@ func SetupRoutes(app *fiber.App) {
 	form := app.Group("form")
 	form.Get("/", controllers.FormIndex)
 	form.Post("/auth", controllers.FormAuth)
+	form.Get("/register", controllers.FormRegister)
+	form.Post("/register", controllers.FormRegister)
 
 }
